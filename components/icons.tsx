@@ -3,10 +3,11 @@ import Logo from "@/public/Logo.webp"
 import {
   LucideProps,
   Moon,
-  SunMedium,
-  Twitter,
   Search,
   ShoppingCart,
+  SunMedium,
+  Twitter,
+  X,
   type Icon as LucideIcon,
 } from "lucide-react"
 
@@ -17,6 +18,7 @@ export const Icons = {
   search: Search,
   moon: Moon,
   twitter: Twitter,
+  cross: X,
   cart: ShoppingCart,
   logo: (props: LucideProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
@@ -35,6 +37,27 @@ export const Icons = {
     </svg>
   ),
   siteLogo: ({ className }: { className?: string }) => {
-    return <Image src={Logo}  alt="Logo of website" className={className} />
+    return <Image src={Logo} alt="Logo of website" className={className} />
+  },
+  dropdownIcon: ({ className }: { className?: string }) => {
+    return (
+      <svg
+        className={className}
+        stroke="currentColor"
+        fill="currentColor"
+        stroke-width="0"
+        viewBox="0 0 24 24"
+        color="black"
+        font-size="27"
+        height="1em"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g>
+          <path fill="none" d="M0 0h24v24H0z"></path>
+          <path d="M3 4h18v2H3V4zm6 7h12v2H9v-2zm-6 7h18v2H3v-2z"></path>
+        </g>
+      </svg>
+    )
   },
 }

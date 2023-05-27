@@ -1,7 +1,9 @@
 import { Icons } from "components/icons"
-import SearchForm from "./search-from"
-import NavItems from "./navitems"
+
 import CartButton from "./cart-button"
+import NavbarDropdownMenu from "./navbar-dropdown"
+import NavItems from "./navitems"
+import SearchForm from "./search-from"
 
 export default function Navbar() {
   return (
@@ -10,6 +12,10 @@ export default function Navbar() {
       <NavItems />
       <SearchForm />
       <CartButton />
+      <NavbarDropdownMenu>
+        <CartButton className="flex"/>
+        <NavItems className="flex flex-col justify-center items-center gap-y-1" />
+      </NavbarDropdownMenu>
     </div>
   )
 }
