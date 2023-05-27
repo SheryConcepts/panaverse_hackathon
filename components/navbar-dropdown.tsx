@@ -39,12 +39,12 @@ function SpanningDropdown({
   children: ReactNode
 }) {
   return (
-    <div className="px-12 py-10 absolute left-0 top-0 w-screen h-screen bg-gray-300">
+    <div className="px-12 py-10 absolute left-0 top-0 w-screen h-screen bg-gray-50">
       <div className="flex items-center justify-between">
         <Icons.siteLogo /> 
         <Icons.cross className="cursor-pointer" onClick={() => toggleYourself(!toggle)}>Toggle</Icons.cross>
       </div>
-      <div className="flex flex-col mt-10 items-center justify-center">{children}</div>
+      <div className="flex flex-col mt-10 items-center justify-center gap-y-2">{children}</div>
     </div>
   )
 }
