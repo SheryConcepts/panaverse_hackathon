@@ -42,7 +42,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative min-h-screen flex-col container lg:px-14 px-10">
+            <div className="flex relative min-h-screen flex-col container lg:px-14 px-10">
               <Navbar />
               <div className="flex-1">{children}</div>
               <Footer />

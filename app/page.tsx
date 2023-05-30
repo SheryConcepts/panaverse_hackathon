@@ -1,7 +1,3 @@
-import Hero from "@/components/hero"
-
-export default function IndexPage() {
-  return <>
-  <Hero /> 
-  </>
+export default function Page() {
+  return <p>hello</p>
 }
