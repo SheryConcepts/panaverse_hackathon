@@ -4,10 +4,7 @@ import { ReactNode, useState } from "react"
 
 import { Icons } from "@/components/icons"
 
-import { Button } from "./ui/button"
-
 export default function NavbarDropdownMenu({
-  className,
   children,
 }: {
   children?: ReactNode
@@ -28,6 +25,7 @@ export default function NavbarDropdownMenu({
     </>
   )
 }
+
 
 function SpanningDropdown({
   toggleYourself,

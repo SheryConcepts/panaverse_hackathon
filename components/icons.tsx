@@ -6,8 +6,12 @@ import {
   Search,
   ShoppingCart,
   SunMedium,
-  Twitter,
+   Twitter,
   X,
+  Facebook,
+  Linkedin,
+
+
   type Icon as LucideIcon,
 } from "lucide-react"
 
@@ -18,6 +22,8 @@ export const Icons = {
   search: Search,
   moon: Moon,
   twitter: Twitter,
+  facebook: Facebook,
+  linkedin: Linkedin,
   cross: X,
   cart: ShoppingCart,
   logo: (props: LucideProps) => (

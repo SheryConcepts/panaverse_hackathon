@@ -2,7 +2,7 @@ import Sale from "./sale";
 
 export default function Hero() {
   return (
-    <div className="container lg:py-12 lg:px-14 flex flex-col justify-center items-start py-8 px-10">
+    <div className="">
       <Sale />
       <Title />
       <Description />
