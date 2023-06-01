@@ -1,6 +1,5 @@
 
-export default function Layout() {
-    return (
-    <p>hello</p>
+export default function Layout({children}: {children: React.ReactNode}) { return (
+    <div>{children}</div>
     )
   }
