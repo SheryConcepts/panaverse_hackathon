@@ -4,7 +4,7 @@ import { ReactJsonFormatter } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import ProductImages from "@/components/product-images"
 
-export default async function({
+export default async function Page({
     params: { product: productSlug },
 }: {
     params: { product: string }
@@ -23,7 +23,6 @@ export default async function({
         "productCare": productInformation.productCare
 }`)
 
-    // console.log(data)
 
     return (
         <div>
@@ -49,9 +48,21 @@ export default async function({
                     </div>
                 </div>
             </div>
-            {
-                // <ReactJsonFormatter data={JSON.stringify(product)} />
-            }
+            <div>
+                <h2>Product Information</h2>
+            </div>
+            <div className="flex flex-row justify-between gap-x-4">
+                <h2>Product Details</h2>
+                <p>{product.productDetails}</p>
+            </div>
+            <div className="flex flex-row justify-start gap-x-8">
+                <h2>Product Care</h2>
+                <div className="flex flex-col">
+                    {product.productCare.map((i: string) => (
+                        <li>{i}</li>
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }

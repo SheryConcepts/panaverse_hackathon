@@ -1,6 +1,6 @@
-import Image from "next/image"
-import Link from "next/link"
-import { groqFetch } from "@/sanity/lib/client"
+import Link from "next/link";
+import { groqFetch } from "@/sanity/lib/client";
+import ProductCard from "@/components/product-card";
 
 export default async function Page() {
   
@@ -40,18 +40,3 @@ export default async function Page() {
   )
 }
 
-function ProductCard({
-  productImage,
-  productTitle,
-  productType,
-  productPrice,
-}: any) {
-  return (
-    <div className="">
-      <Image src={productImage} width={300} height={100} alt="" />
-      <h1>{productTitle}</h1>
-      <h2>{productType}</h2>
-      <p>{productPrice}</p>
-    </div>
-  )
-}
