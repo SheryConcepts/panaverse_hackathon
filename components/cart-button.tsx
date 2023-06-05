@@ -1,8 +1,8 @@
-import { cn } from "@/lib/utils"
-
-import { Icons } from "./icons"
+import { Icons } from "./icons";
+import { cn } from "@/lib/utils";
 
 export default function CartButton({ className }: { className?: string }) {
+  
   return (
     <div
       className={cn(
@@ -15,5 +15,5 @@ export default function CartButton({ className }: { className?: string }) {
         1
       </span>
     </div>
-  )
+  );
 }

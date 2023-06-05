@@ -1,4 +1,5 @@
 import { groqFetch } from "@/sanity/lib/client"
+import AddtoCart from "@/components/add-to-cart"
 
 import { ReactJsonFormatter } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -43,7 +44,7 @@ export default async function Page({
                         </div>
                     </div>
                     <div className="flex gap-x-2">
-                        <Button>ADD TO CART</Button>
+                        <AddtoCart />
                         <p>{product.productPrice}</p>
                     </div>
                 </div>
