@@ -7,14 +7,14 @@ import SearchForm from "./search-from"
 
 export default function Navbar() {
   return (
-    <div className="flex justify-between items-center py-10">
+    <div className="flex items-center justify-between py-10">
       <Icons.siteLogo className="h-6 " />
       <NavItems />
       <SearchForm />
       <CartButton />
       <NavbarDropdownMenu>
         <CartButton className="flex" />
-        <NavItems className="flex flex-col justify-center items-center gap-y-1" />
+        <NavItems className="flex flex-col items-center justify-center gap-y-1" />
       </NavbarDropdownMenu>
     </div>
   )

@@ -62,7 +62,7 @@ export default defineType({
       type: "array",
       name: "productImages",
       title: "Images",
-      of: [{type: "image"}]
+      of: [{ type: "image" }],
     },
     {
       type: "slug",
@@ -87,8 +87,8 @@ export default defineType({
           type: "array",
           name: "productCare",
           title: "Product Care",
-          of: [{type: "string"}],
-        }
+          of: [{ type: "string" }],
+        },
       ],
     },
   ],

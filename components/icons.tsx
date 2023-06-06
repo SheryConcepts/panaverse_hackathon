@@ -1,17 +1,15 @@
 import Image from "next/image"
 import Logo from "@/public/Logo.webp"
 import {
+  Facebook,
+  Linkedin,
   LucideProps,
   Moon,
   Search,
   ShoppingCart,
   SunMedium,
-   Twitter,
+  Twitter,
   X,
-  Facebook,
-  Linkedin,
-
-
   type Icon as LucideIcon,
 } from "lucide-react"
 

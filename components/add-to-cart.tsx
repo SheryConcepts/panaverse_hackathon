@@ -1,11 +1,12 @@
-"use client";
+"use client"
 
-import { Button } from "./ui/button";
-import { useUser } from "@clerk/nextjs";
-import Link from "next/link";
+import Link from "next/link"
+import { useUser } from "@clerk/nextjs"
+
+import { Button } from "./ui/button"
 
 export default function AddtoCart() {
-  const { isSignedIn } = useUser();
+  const { isSignedIn } = useUser()
   return (
     <div>
       {isSignedIn ? (
@@ -16,5 +17,5 @@ export default function AddtoCart() {
         </Link>
       )}
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import { type SchemaTypeDefinition } from 'sanity'
+import { type SchemaTypeDefinition } from "sanity"
 
-const pet: SchemaTypeDefinition  = {
-  name: 'pet',
+const pet: SchemaTypeDefinition = {
+  name: "pet",
   type: "document",
   title: "Pet",
   fields: [
@@ -24,8 +24,8 @@ const pet: SchemaTypeDefinition  = {
       name: "image",
       type: "image",
       title: "Image",
-    }
+    },
   ],
-} 
+}
 
-export default pet;
+export default pet

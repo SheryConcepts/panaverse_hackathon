@@ -1,9 +1,10 @@
-import ProductCard from "@/components/product-card";
+import Link from "next/link"
 // import { db } from "@/db/db";
 // import { carts, NewCart } from "@/db/schema/orders";
 // import { users, NewUser } from "@/db/schema/user";
-import { groqFetch } from "@/sanity/lib/client";
-import Link from "next/link";
+import { groqFetch } from "@/sanity/lib/client"
+
+import ProductCard from "@/components/product-card"
 
 export default async function Page() {
   const products = await groqFetch(`
@@ -18,20 +19,20 @@ export default async function Page() {
         productSlug,
         "productDetails": productInformation.productDetails,
         "productCare": productInformation.productCare
-}`);
+}`)
 
   // const insertedUser = await db.insert(users).values({ id: 1 });
   //
   // const insertedCart = await db.insert(carts).values([{ id: 1, userId: 1 }]);
-  
+
   // const selectedUser = await db.select().from(users);
-  // 
+  //
   // const selectedCart = await db.select().from(carts);
 
-// console.log(selectedCart);
-// console.log(selectedUser);
+  // console.log(selectedCart);
+  // console.log(selectedUser);
   return (
-    <div className="flex flex-wrap justify-around items-center gap-y-4">
+    <div className="flex flex-wrap items-center justify-around gap-y-4">
       {products.map((p: any) => (
         <Link href={`/products/${p.productSlug.current}`} key={p._id}>
           <ProductCard
@@ -44,5 +45,5 @@ export default async function Page() {
         </Link>
       ))}
     </div>
-  );
+  )
 }

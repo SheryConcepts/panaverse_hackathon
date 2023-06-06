@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { groqFetch } from "@/sanity/lib/client";
-import ProductCard from "@/components/product-card";
+import Link from "next/link"
+import { groqFetch } from "@/sanity/lib/client"
+
+import ProductCard from "@/components/product-card"
 
 export default async function Page() {
-  
   const products = await groqFetch(`
     *[_type == "product"] {
         _id,
@@ -18,15 +18,10 @@ export default async function Page() {
         "productCare": productInformation.productCare
 }`)
 
-
-
   return (
-    <div className="flex flex-wrap justify-around items-center gap-y-4">
+    <div className="flex flex-wrap items-center justify-around gap-y-4">
       {products.map((p: any) => (
-        <Link
-          href={`/products/${p.productSlug.current}`}
-          key={p._id}
-        >
+        <Link href={`/products/${p.productSlug.current}`} key={p._id}>
           <ProductCard
             productImage={p.productImages[0] ?? ""}
             productTitle={p.productTitle}
@@ -39,4 +34,3 @@ export default async function Page() {
     </div>
   )
 }
-

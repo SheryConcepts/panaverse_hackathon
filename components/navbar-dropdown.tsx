@@ -8,11 +8,12 @@ export default function NavbarDropdownMenu({
   children,
 }: {
   children?: ReactNode
-  className?: string }) {
+  className?: string
+}) {
   const [toggle, setToggle] = useState<boolean>(false)
   return (
     <>
-      <div className="lg:hidden flex" onClick={() => setToggle(!toggle)}>
+      <div className="flex lg:hidden" onClick={() => setToggle(!toggle)}>
         <Icons.dropdownIcon className="" />
       </div>
       <>
@@ -26,7 +27,6 @@ export default function NavbarDropdownMenu({
   )
 }
 
-
 function SpanningDropdown({
   toggleYourself,
   toggle,
@@ -37,12 +37,19 @@ function SpanningDropdown({
   children: ReactNode
 }) {
   return (
-    <div className="px-12 py-10 absolute left-0 top-0 w-screen h-screen bg-gray-50">
+    <div className="absolute left-0 top-0 h-screen w-screen bg-gray-50 px-12 py-10">
       <div className="flex items-center justify-between">
-        <Icons.siteLogo /> 
-        <Icons.cross className="cursor-pointer" onClick={() => toggleYourself(!toggle)}>Toggle</Icons.cross>
+        <Icons.siteLogo />
+        <Icons.cross
+          className="cursor-pointer"
+          onClick={() => toggleYourself(!toggle)}
+        >
+          Toggle
+        </Icons.cross>
       </div>
-      <div className="flex flex-col mt-10 items-center justify-center gap-y-2">{children}</div>
+      <div className="mt-10 flex flex-col items-center justify-center gap-y-2">
+        {children}
+      </div>
     </div>
   )
 }

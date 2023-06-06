@@ -11,17 +11,17 @@ export default function SearchForm() {
 
   function handleChange(e: any) {
     e.preventDefault()
-    console.log(e.target.value);
+    console.log(e.target.value)
     setInput(e.target.value)
   }
 
   return (
-    <form className="ring-1 focus:ring-2 rounded-sm  ring-primary lg:flex items-center hidden">
-      <Button type="submit" variant="link" className="p-2 h-6">
-        <Icons.search className="p-0 w-3" />
+    <form className="hidden items-center rounded-sm  ring-1 ring-primary focus:ring-2 lg:flex">
+      <Button type="submit" variant="link" className="h-6 p-2">
+        <Icons.search className="w-3 p-0" />
       </Button>
       <input
-        className="rounded-sm text-xs font-thin active:outilne-none focus:outline-none"
+        className="active:outilne-none rounded-sm text-xs font-thin focus:outline-none"
         placeholder="what you looking for"
         type="text"
         value={input}

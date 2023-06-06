@@ -35,6 +35,5 @@ export function ReactJsonFormatter({ data }: { data: string }) {
     json: data,
     tabWith: 8,
     jsonStyle,
-  });
-  
+  })
 }

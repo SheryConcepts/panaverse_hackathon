@@ -1,9 +1,8 @@
-import { db } from "@/db/db";
-import { orders } from "@/db/schema";
-import { users } from "@/db/schema";
-import { config } from "dotenv";
+import { db } from "@/db/db"
+import { orders, users } from "@/db/schema"
+import { config } from "dotenv"
 
-config();
+config()
 
 async function run() {
   try {
@@ -42,24 +41,24 @@ async function run() {
     // ]);
     // console.log("orders added!");
     //
-    const allUsers = await db.query.users.findMany();
-    console.log("all users", allUsers);
+    const allUsers = await db.query.users.findMany()
+    console.log("all users", allUsers)
 
-    const allOrders = await db.query.orders.findMany();
-    console.log("all orders", allOrders);
+    const allOrders = await db.query.orders.findMany()
+    console.log("all orders", allOrders)
 
     const usersWithOrders = await db.query.users.findMany({
       with: {
         orders: true,
       },
-    });
-    console.log("users with orders", usersWithOrders);
+    })
+    console.log("users with orders", usersWithOrders)
 
     const firstUserWithItsOrders = await db.query.users.findFirst({
       with: {
         orders: true,
       },
-    });
+    })
 
     const user2WithOnlyItsNameAndOrders = await db.query.users.findFirst({
       columns: {
@@ -69,13 +68,13 @@ async function run() {
         orders: true,
       },
       where: (users, { eq }) => eq(users.id, 2),
-    });
+    })
     console.log(
       "User 2 with only its name and orders",
       user2WithOnlyItsNameAndOrders
-    );
+    )
 
-    console.log("first user with its orders", firstUserWithItsOrders);
+    console.log("first user with its orders", firstUserWithItsOrders)
 
     const user1WithOnlyItsNameAndOrders = await db.query.users.findFirst({
       columns: {
@@ -85,11 +84,11 @@ async function run() {
         orders: true,
       },
       where: (users, { eq }) => eq(users.id, 1),
-    });
+    })
     console.log(
       "User 1 with only its name and orders",
       user1WithOnlyItsNameAndOrders
-    );
+    )
 
     const user1WithEmailOnlyAndOrdersWhereSizeIsLQuantityIs2 =
       await db.query.users.findFirst({
@@ -98,18 +97,22 @@ async function run() {
         },
         with: {
           orders: {
-            where: (orders, { eq, and }) => and(eq(orders.size, "L"), eq(orders.quantity, 2)),
+            where: (orders, { eq, and }) =>
+              and(eq(orders.size, "L"), eq(orders.quantity, 2)),
             columns: {
               id: true,
             },
           },
         },
-      });
-    console.log("user1WithEmailOnlyAndOrdersWhereSizeIsLQuantityIs2",user1WithEmailOnlyAndOrdersWhereSizeIsLQuantityIs2)
+      })
+    console.log(
+      "user1WithEmailOnlyAndOrdersWhereSizeIsLQuantityIs2",
+      user1WithEmailOnlyAndOrdersWhereSizeIsLQuantityIs2
+    )
   } catch (e) {
-    console.log("Error during execution", e);
-    process.exitCode = 1;
+    console.log("Error during execution", e)
+    process.exitCode = 1
   }
 }
 
-run();
+run()
