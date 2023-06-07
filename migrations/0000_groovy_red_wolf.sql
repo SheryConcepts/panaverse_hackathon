@@ -3,11 +3,11 @@ CREATE TABLE IF NOT EXISTS "orders" (
 	"quantity" integer NOT NULL,
 	"size" varchar(60) NOT NULL,
 	"productId" varchar(255) NOT NULL,
-	"userId" integer NOT NULL
+	"userId" varchar NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "users" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL,
 	"name" varchar,
 	"email" varchar
 );

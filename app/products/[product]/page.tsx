@@ -4,6 +4,7 @@ import { ReactJsonFormatter } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import AddtoCart from "@/components/add-to-cart"
 import ProductImages from "@/components/product-images"
+import { addProductToCart } from "@/app/actions"
 
 export default async function Page({
   params: { product: productSlug },
@@ -19,7 +20,7 @@ export default async function Page({
         productCategory,
         productSizes,
         "productImages": productImages[].asset->url,
-        productSlug,
+        "productSlug": productSlug.current,
         "productDetails": productInformation.productDetails,
         "productCare": productInformation.productCare
 }`)
@@ -33,19 +34,12 @@ export default async function Page({
             <h1>{product.productTitle}</h1>
             <h2>{product.productType}</h2>
           </div>
-          <div>
-            <h3>SELECT SIZE</h3>
-            <div className="flex flex-row gap-x-2">
-              {" "}
-              {product.productSizes.map((i: any) => (
-                <p>{i}</p>
-              ))}
-            </div>
-          </div>
-          <div className="flex gap-x-2">
-            <AddtoCart />
-            <p>{product.productPrice}</p>
-          </div>
+          <AddtoCart
+            productSlug={product.productSlug}
+            productSizes={product.productSizes}
+            productPrice={product.productPrice}
+            addProductToCart={addProductToCart}
+          />
         </div>
       </div>
       <div>

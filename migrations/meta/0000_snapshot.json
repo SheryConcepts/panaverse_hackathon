@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "2be8b5a2-bac8-47de-b581-269701bd256f",
+  "id": "bc80d84c-4ea9-45ba-bc19-6650febfaeae",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "orders": {
@@ -34,7 +34,7 @@
         },
         "userId": {
           "name": "userId",
-          "type": "integer",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         }
@@ -78,7 +78,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "varchar",
           "primaryKey": true,
           "notNull": true
         },

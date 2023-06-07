@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Icons } from "components/icons"
 
 import CartButton from "./cart-button"
@@ -8,7 +9,9 @@ import SearchForm from "./search-from"
 export default function Navbar() {
   return (
     <div className="flex items-center justify-between py-10">
-      <Icons.siteLogo className="h-6 " />
+      <Link href="/">
+        <Icons.siteLogo className="h-6 " />
+      </Link>
       <NavItems />
       <SearchForm />
       <CartButton />

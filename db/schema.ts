@@ -8,7 +8,7 @@ export const orders = pgTable(
     quantity: integer("quantity").notNull(),
     size: varchar("size", { length: 60 }).notNull(),
     productId: varchar("productId", { length: 255 }).notNull(),
-    userId: integer("userId")
+    userId: varchar("userId")
       .references(() => users.id)
       .notNull(),
   },
@@ -18,13 +18,14 @@ export const orders = pgTable(
   })
 )
 
+
 export type Orders = InferModel<typeof orders, "select">
 export type NewOrders = InferModel<typeof orders, "insert">
 
 export const users = pgTable(
   "users",
   {
-    id: serial("id").primaryKey(),
+    id: varchar("id").primaryKey(),
     name: varchar("name"),
     email: varchar("email"),
   },
