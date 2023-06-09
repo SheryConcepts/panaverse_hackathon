@@ -1,6 +1,6 @@
 export default function ShoppingCartCard() {
   return (
-    <div className="flex justify-between gap-x-4 flex-col md:flex-row">
+    <div className="flex flex-col justify-between gap-x-4 md:flex-row">
       <div>IMAGE</div>
       <div>
         <div className="flex flex-col justify-between">
