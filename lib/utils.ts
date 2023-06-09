@@ -2,6 +2,7 @@ import { groqFetch } from "@/sanity/lib/client"
 import { clsx, type ClassValue } from "clsx"
 import JsonFormatter from "react-json-formatter"
 import { twMerge } from "tailwind-merge"
+import {db} from "@/db/db";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -36,4 +37,15 @@ export function ReactJsonFormatter({ data }: { data: string }) {
     tabWith: 8,
     jsonStyle,
   })
+}
+
+
+export async function fetchUserOrders(userId: string) {
+  const data = await db.query.users.findFirst({
+    with: {
+      orders: true,
+    },
+    where: (users, { eq }) => eq(users.id, userId),
+  });
+  return data?.orders.length ?? 0;
 }

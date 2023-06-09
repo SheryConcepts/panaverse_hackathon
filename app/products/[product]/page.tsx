@@ -1,15 +1,12 @@
-import { groqFetch } from "@/sanity/lib/client"
-
-import { ReactJsonFormatter } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import AddtoCart from "@/components/add-to-cart"
-import ProductImages from "@/components/product-images"
-import { addProductToCart } from "@/app/actions"
+import { groqFetch } from "@/sanity/lib/client";
+import AddtoCart from "@/components/cart/add-to-cart";
+import ProductImages from "@/components/product-images";
+import { addProductToCart } from "@/app/actions";
 
 export default async function Page({
   params: { product: productSlug },
 }: {
-  params: { product: string }
+  params: { product: string };
 }) {
   const product = await groqFetch(`
     *[_type == "product" && productSlug.current == "${productSlug}"][0] {
@@ -23,7 +20,7 @@ export default async function Page({
         "productSlug": productSlug.current,
         "productDetails": productInformation.productDetails,
         "productCare": productInformation.productCare
-}`)
+}`);
 
   return (
     <div>
@@ -38,7 +35,7 @@ export default async function Page({
             productSlug={product.productSlug}
             productSizes={product.productSizes}
             productPrice={product.productPrice}
-            addProductToCart={addProductToCart}
+            addProductToCartAction={addProductToCart}
           />
         </div>
       </div>
@@ -58,5 +55,5 @@ export default async function Page({
         </div>
       </div>
     </div>
-  )
+  );
 }

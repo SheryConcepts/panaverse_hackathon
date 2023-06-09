@@ -1,3 +1,5 @@
 export default function Page() {
-  return <p>hello</p>
+  return <div className="">
+  
+  </div>
 }

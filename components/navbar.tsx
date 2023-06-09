@@ -1,10 +1,11 @@
-import Link from "next/link"
-import { Icons } from "components/icons"
+import Link from "next/link";
+import { Icons } from "components/icons";
 
-import CartButton from "./cart-button"
-import NavbarDropdownMenu from "./navbar-dropdown"
-import NavItems from "./navitems"
-import SearchForm from "./search-from"
+import CartButton from "@/components/cart/cart-button";
+
+import NavbarDropdownMenu from "./navbar-dropdown";
+import NavItems from "./navitems";
+import SearchForm from "./search-from";
 
 export default function Navbar() {
   return (
@@ -14,11 +15,17 @@ export default function Navbar() {
       </Link>
       <NavItems />
       <SearchForm />
-      <CartButton />
+      {
+        // @ts-ignore
+        <CartButton />
+      }
       <NavbarDropdownMenu>
-        <CartButton className="flex" />
+        {
+          // @ts-ignore
+          <CartButton />
+        }
         <NavItems className="flex flex-col items-center justify-center gap-y-1" />
       </NavbarDropdownMenu>
     </div>
-  )
+  );
 }
