@@ -1,11 +1,34 @@
-export default function ShoppingCartCard() {
+import Image from "next/image";
+import { deleteAction } from "@/app/actions";
+
+export default function ShoppingCartCardClient({
+  quantity,
+  size,
+  deleteOrder,
+  id,
+  productPrice,
+  productTitle,
+  productImages,
+}: {
+  quantity: number;
+  size: string;
+  id: number;
+  productPrice: number;
+  productImages: string[];
+  productTitle: string;
+  deleteOrder: (id: number, action: (v: number) => Promise<void>) => void;
+}) {
+  // const productData = await fetchSanityProducts(product);
+  // console.log(productData)
   return (
     <div className="flex flex-col justify-between gap-x-4 md:flex-row">
-      <div>IMAGE</div>
-      <div>
-        <div className="flex flex-col justify-between">
-          <h1>TITLE</h1>
-          <h1>DELETE ICON</h1>
+      <Image src={productImages[0]} alt={productTitle} width={150} height={150} />
+      <div className="w-3/4">
+        <div className="flex justify-between">
+          <h1>{productTitle}</h1>
+          <button onClick={() => deleteOrder(id, deleteAction)}>
+            DELETE ICON
+          </button>
         </div>
         <div>
           <p>DRESS</p>
@@ -17,10 +40,10 @@ export default function ShoppingCartCard() {
           <p>5 Working Days</p>
         </div>
         <div className="flex flex-row justify-between">
-          <p>$100</p>
+          <p>{productPrice}</p>
           <div className="flex flex-row gap-x-2">
             <p>-</p>
-            <p>2</p>
+            <p>{quantity}</p>
             <p>+</p>
           </div>
         </div>

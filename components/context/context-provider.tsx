@@ -32,7 +32,7 @@ export function SiteContextProvider({
   // if isMutating is true then update data optimisicly
   // if mutationFailed is true then rollback the update
   const isMutating = isPending || isFetching;
-  const mutationFailed = !isFetching && isFailed;
+  const mutationFailed =  isFailed;
 
   SiteContext = createContext({
     isMutating ,

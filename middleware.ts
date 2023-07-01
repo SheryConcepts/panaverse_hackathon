@@ -8,6 +8,7 @@ export default authMiddleware({
     "/female",
     "/kids",
     "/products/:id",
+    "/cart"
   ],
 })
 

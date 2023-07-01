@@ -6,7 +6,6 @@ import { cn, fetchUserOrders } from "@/lib/utils";
 import CartButtonCount from "@/components/cart/cart-button-count";
 import { Icons } from "@/components/icons";
 
-const cachedFetchOrders = cache(fetchUserOrders);
 
 export default async function CartButton({
   className,
@@ -17,7 +16,7 @@ export default async function CartButton({
 
   const { userId } = auth();
   if (userId) {
-    ordersAddedToCart = await cachedFetchOrders(userId);
+    ordersAddedToCart = await fetchUserOrders(userId);
   }
 
   return (

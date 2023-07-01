@@ -6,13 +6,14 @@ import { orders, users } from "@/db/schema";
 import { groqFetch } from "@/sanity/lib/client";
 import { type User } from "@clerk/backend";
 import { auth, currentUser } from "@clerk/nextjs";
+import { eq } from "drizzle-orm";
 
 export async function addProductToCart(
   productSlug: string,
   quantity: number,
   size: string | undefined
 ) {
-  // faking a delay using promise timeout, it is not working please correct it
+  // faking a delay using promise timeout
   // const result = await new Promise<string>((resolve) =>
   //   setTimeout(() => {
   //     resolve("hello");
@@ -20,6 +21,7 @@ export async function addProductToCart(
   // );
   // throw new Error("error")
   const { userId } = auth();
+  console.log(userId);
 
   if (!userId) throw new Error("You must be logged in");
 
@@ -68,9 +70,21 @@ export async function addProductToCart(
 
     // after adding products to cart we revalidate cache of CartButton component to update the order's count
     // revalidateTag("cart-button-cache");
+    revalidatePath(`/cart`);
     revalidatePath(`/products/${productSlug}`);
     console.log("added current order to database");
   } catch (e) {
     console.error("Error while fetching data", e);
+  }
+}
+
+export async function deleteAction(id: number) {
+  try {
+    console.log(`deleting order with ID=${id}`);
+    await db.delete(orders).where(eq(orders.id, id));
+    console.log(`deleted order with ID=${id}`);
+    revalidatePath('/cart')
+  } catch (e) {
+    console.warn(`Error while deleting order with ID=${id}`, e);
   }
 }

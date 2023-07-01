@@ -55,11 +55,11 @@ export default function AddtoCart({
         </div>
         <div className="flex justify-between">
           <h1>Quantity</h1>
-            <div className="flex gap-x-4">
-              <button onClick={() => setQuantity(quantity - 1)}>-</button>
-              <h1>{typeof window === undefined ?  null : quantity}</h1>
-              <button onClick={() => setQuantity(quantity + 1)}>+</button>
-            </div>
+          <div className="flex gap-x-4">
+            <button onClick={() => setQuantity(quantity - 1)}>-</button>
+            <h1>{quantity}</h1>
+            <button onClick={() => setQuantity(quantity + 1)}>+</button>
+          </div>
         </div>
       </div>
       {isSignedIn ? (

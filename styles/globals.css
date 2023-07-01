@@ -78,7 +78,55 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  /* container { */
+  /* .container { */
   /*   @apply max-w-[680px]; */
   /* } */
+
+  .text-h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+  }
+
+  .text-p {
+    @apply leading-7 [&:not(:first-child)]:mt-6;
+  }
+
+  .text-h2 {
+    @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
+  }
+
+  .text-h3 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+  }
+
+  .text-h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+  }
+
+  .text-blockquote {
+    @apply mt-6 border-l-2 pl-6 italic;
+  }
+
+  .text-ul {
+    @apply my-6 ml-6 list-disc [&>li]:mt-2;
+  }
+
+  .text-inline-code {
+    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+  }
+
+  .text-lead {
+    @apply text-xl text-muted-foreground;
+  }
+
+  .text-large {
+    @apply text-lg font-semibold;
+  }
+
+  .text-small {
+    @apply text-sm font-medium leading-none;
+  }
+
+  .text-muted {
+    @apply text-sm text-muted-foreground;
+  }
 }
