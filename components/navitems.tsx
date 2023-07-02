@@ -1,12 +1,12 @@
-import Link from "next/link"
+import Link from "next/link";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 export default function NavItems({ className }: { className?: string }) {
   return (
     <ul
       className={cn(
-        "hidden w-1/3 flex-initial justify-around font-sans lg:flex",
+        "hidden w-1/3 flex-initial justify-around font-sans font-medium lg:flex",
         className
       )}
     >
@@ -23,5 +23,5 @@ export default function NavItems({ className }: { className?: string }) {
         <li>Products</li>
       </Link>
     </ul>
-  )
+  );
 }

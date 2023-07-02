@@ -23,7 +23,7 @@ export default async function CartButton({
     <Link
       href="/cart"
       className={cn(
-        "relative hidden items-center justify-center rounded-full bg-gray-300 p-2 lg:flex",
+        "relative hidden items-center justify-center rounded-full bg-slate-200 p-2 lg:flex",
         className
       )}
     >

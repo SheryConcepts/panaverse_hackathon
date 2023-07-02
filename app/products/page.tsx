@@ -19,7 +19,7 @@ export default async function Page() {
 }`)
 
   return (
-    <div className="flex flex-wrap items-center justify-around gap-y-4">
+    <div className="flex flex-wrap pt-16 pb-20 items-center justify-evenly gap-x-4 gap-y-20">
       {products.map((p: any) => (
         <Link href={`/products/${p.productSlug.current}`} key={p._id}>
           <ProductCard
