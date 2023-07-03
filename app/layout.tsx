@@ -1,15 +1,15 @@
-import "@/styles/globals.css"
-import { Metadata } from "next"
-import { ClerkProvider } from "@clerk/nextjs"
+import "@/styles/globals.css";
+import { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 
-import { siteConfig } from "@/config/site"
-import { fontSans } from "@/lib/fonts"
-import { cn } from "@/lib/utils"
-import Footer from "@/components/footer"
-import Navbar from "@/components/navbar"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { ThemeProvider } from "@/components/theme-provider"
-import { SiteContextProvider } from "@/components/context/context-provider"
+import { siteConfig } from "@/config/site";
+import { fontSans } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
+import { SiteContextProvider } from "@/components/context/context-provider";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -26,10 +26,10 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-}
+};
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -38,24 +38,29 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <html lang="en" suppressHydrationWarning>
         <head />
         <ClerkProvider>
-        <SiteContextProvider>
-          <body
-            className={cn(
-              "min-h-screen bg-background font-sans antialiased", fontSans.className
-            )}
-          >
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <div className="container relative flex min-h-screen flex-col px-10 lg:px-14">
-                <Navbar />
-                <div className="flex-1">{children}</div>
-                <Footer />
-              </div>
-              <TailwindIndicator />
-            </ThemeProvider>
-          </body>
+          <SiteContextProvider>
+            <body
+              className={cn(
+                "min-h-screen bg-background font-sans antialiased",
+                fontSans.className
+              )}
+            >
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem
+              >
+                <div className="container relative flex min-h-screen flex-col px-10 lg:px-14">
+                  <Navbar />
+                  <div className="flex-1">{children}</div>
+                  <Footer />
+                </div>
+                <TailwindIndicator />
+              </ThemeProvider>
+            </body>
           </SiteContextProvider>
         </ClerkProvider>
       </html>
     </>
-  )
+  );
 }
