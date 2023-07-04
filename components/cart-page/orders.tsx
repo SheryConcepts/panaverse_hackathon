@@ -16,6 +16,9 @@ interface Order {
   size: string;
   productId: string;
   userId: string;
+  productTitle: string;
+  productPrice: number;
+  productImages: string[];
 }
 
 export default function Orders({
@@ -37,8 +40,6 @@ export default function Orders({
   const [failed, setFailed] = useState(false);
   const [removedOrder, setRemovedOrder] = useState<false | Order>(false);
 
-  console.log(orders);
-
   function deleteOrderOptimistic(
     id: number,
     action: (orderId: number) => Promise<void>
@@ -57,17 +58,15 @@ export default function Orders({
 
   useEffect(() => {
     if (failed) {
-      // @ts-ignore
-      setOrders([removedOrder, ...orders]);
+      removedOrder && setOrders([removedOrder, ...orders]);
       setFailed(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [failed]);
 
   return (
-    <div className="flex w-1/2 flex-col gap-y-4">
+    <div className="flex w-full flex-auto flex-col gap-y-12 lg:w-1/2">
       {orders.map((o) => (
-        // @ts-ignore
         <ShoppingCartCard
           quantity={o.quantity}
           key={o.id}

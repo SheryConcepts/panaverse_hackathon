@@ -49,23 +49,22 @@ export default async function Page() {
   const { userId } = auth();
   if (userId) {
     const orders: order[] = await fetchPlacedOrders(userId);
-    
-    const totalQunatity = orders.reduce((prev, curr, i, arr) => {
+
+    const totalQunatity = orders.reduce((prev, curr) => {
       return prev + curr.quantity;
     }, 0);
 
     const subtotal = orders.reduce((prev, curr, i, arr) => {
       return prev + curr.productPrice * curr.quantity;
     }, 0);
-    
+
     return (
-      <div className="mx-auto  max-w-screen-lg px-8">
+      <div className="mx-auto max-w-screen-lg px-8 py-10">
         <h2 className="mb-8 text-3xl font-bold">Shopping Cart</h2>
         {orders ? (
-          <div className="flex flex-col items-center justify-between  gap-x-4 sm:flex-col md:flex-col lg:flex-row lg:items-start">
+          <div className="flex flex-col items-start justify-start  gap-y-12 gap-x-8 lg:flex-row lg:items-start lg:justify-between">
             <Orders orders={orders} />
             <OrderSummary totalQuantity={totalQunatity} subtotal={subtotal} />
-            
           </div>
         ) : (
           <p>No orders in Cart</p>

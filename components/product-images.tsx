@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function ProductImages({ images }: { images: string[] }) {
   const [showcaseImage, setshowcaseImage] = useState(images[0]);
   return (
-    <div className=" flex flex-1 flex-row items-center justify-start gap-x-4">
+    <div className="flex flex-1 flex-row items-center justify-start gap-x-4">
       <div className="flex flex-col items-center justify-start gap-y-2 ">
         {images.map((i) => (
           <Image

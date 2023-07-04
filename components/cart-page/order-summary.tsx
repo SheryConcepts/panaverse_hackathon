@@ -6,17 +6,19 @@ export default function OrderSummary({
   subtotal: number;
 }) {
   return (
-    <div className="gap-y- w-1/4 p-4">
-      <h1>Order Summary</h1>
+    <div className="flex w-full flex-col gap-y-6 bg-gray-50 p-8 lg:w-2/5">
+      <h1 className="text-h4">Order Summary</h1>
       <div className="flex justify-between">
-        <p>quantity</p>
-        <p>{totalQuantity}</p>
+        <p className="">Quantity</p>
+        <p className="">{totalQuantity} Products</p>
       </div>
       <div className="flex justify-between">
         <p>Subtotal</p>
-        <p>{subtotal}</p>
+        <p>${subtotal}</p>
       </div>
-      <button className="w-full p-4 border-blue-900 border-2 mt-2 text-blue-900 bg-blue-500">Process to checkout</button>
+      <button className="w-full max-w-xs self-center bg-gray-800  px-2 py-2 font-bold text-gray-50 ring-2 ring-gray-400  hover:bg-gray-700 active:bg-gray-800">
+        Process to checkout
+      </button>
     </div>
   );
 }

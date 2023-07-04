@@ -25,9 +25,9 @@ export default async function Page({
 
   return (
     <div>
-      <div className="mx-auto flex flex-col items-center justify-start gap-y-24 pb-16 pt-20 lg:flex-row lg:items-center lg:justify-between lg:gap-x-10">
+      <div className="mx-auto flex flex-col items-center justify-start gap-y-24 pb-16 pt-20 lg:flex-row lg:items-center lg:justify-evenly lg:gap-x-10">
         <ProductImages images={product.productImages} />
-        <div className="space-y-12 self-start px-4 lg:self-center">
+        <div className="space-y-12 self-start px-4 lg:self-center lg:pr-12">
           <div className="">
             <h1 className="text-h3 font-normal tracking-wide">
               {product.productTitle}
@@ -44,7 +44,7 @@ export default async function Page({
           />
         </div>
       </div>
-      <div className="relative pb-32 z-10 mx-auto flex max-w-screen-xl flex-col items-start justify-start  bg-slate-50 p-8">
+      <div className="relative z-10 mx-auto flex max-w-screen-xl flex-col items-start justify-start bg-slate-50  p-8 pb-32">
         <div className="relative w-full  border-b-2 border-b-gray-700 py-12">
           <h1 className="text-h1 absolute top-9 z-[-1]  text-5xl tracking-wider  text-gray-200/40 sm:top-4 sm:text-8xl ">
             Overview
