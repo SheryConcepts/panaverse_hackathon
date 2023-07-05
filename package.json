@@ -43,6 +43,7 @@
     "react-day-picker": "^8.6.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.44.1",
+    "react-hot-toast": "^2.4.1",
     "react-json-formatter": "^0.3.2",
     "sanity": "^3.11.3",
     "sharp": "^0.31.3",

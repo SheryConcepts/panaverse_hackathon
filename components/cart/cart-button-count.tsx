@@ -7,7 +7,6 @@ import { SiteContext } from "../context/context-provider";
 export default function CartButton({ placedOrders }: { placedOrders: number }) {
   const { isMutating, mutationFailed, setFailed } = useContext(SiteContext);
   const [orders, setOrders] = useState(placedOrders);
-  console.log(isMutating, mutationFailed, orders);
 
   useEffect(() => {
     if (isMutating) {

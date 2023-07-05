@@ -51,7 +51,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 enableSystem
               >
                 <div className="container relative flex min-h-screen flex-col px-10 lg:px-14">
-                  <Navbar />
+                  {
+                    // @ts-ignore
+                    <Navbar />
+                  }
                   <div className="flex-1">{children}</div>
                   <Footer />
                 </div>
