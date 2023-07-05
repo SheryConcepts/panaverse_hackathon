@@ -9,9 +9,9 @@ import { auth, currentUser } from "@clerk/nextjs";
 import { eq } from "drizzle-orm";
 
 export async function addProductToCart(
-  productSlug: string,
+  productId: string,
   quantity: number,
-  size: string | undefined
+  size: string | undefined,
 ) {
   // faking a delay using promise timeout
   // const result = await new Promise<string>((resolve) =>
@@ -26,41 +26,30 @@ export async function addProductToCart(
   if (!userId) throw new Error("You must be logged in");
 
   try {
-    const { _id: productId }: { _id: string } = await groqFetch(`
-    *[_type == "product" && productSlug.current == "${productSlug}"][0] {
-        _id,
-        productTitle,
-        productType,
-        productPrice,
-        productCategory,
-        productSizes,
-        "productImages": productImages[].asset->url,
-        "productSlug": productSlug.current,
-        "productDetails": productInformation.productDetails,
-        "productCare": productInformation.productCare
-}`);
+    // const {
+    //   id: userId,
+    //   emailAddresses,
+    //   firstName,
+    //   lastName,
+    // } = (await currentUser()) as User;
+    // const { emailAddress } = emailAddresses[0];
+    // const name = `${firstName} ${lastName}`;
+    //
+    // !userId && {
+    //   
+    // console.log("upserting current user to database");
+    // await db
+    //   .insert(users)
+    //   .values({
+    //     email: emailAddress,
+    //     name,
+    //     id: userId,
+    //   })
+    //   .onConflictDoNothing();
+    // console.log("upserted current user to database");
+    // console.log("adding current order to database");
+    // }
 
-    const {
-      id: userId,
-      emailAddresses,
-      firstName,
-      lastName,
-    } = (await currentUser()) as User;
-    const { emailAddress } = emailAddresses[0];
-    const name = `${firstName} ${lastName}`;
-
-    console.log("upserting current user to database");
-    await db
-      .insert(users)
-      .values({
-        email: emailAddress,
-        name,
-        id: userId,
-      })
-      .onConflictDoNothing();
-    console.log("upserted current user to database");
-
-    console.log("adding current order to database");
     await db.insert(orders).values({
       userId,
       productId,
@@ -68,10 +57,8 @@ export async function addProductToCart(
       size: size ?? "",
     });
 
-    // after adding products to cart we revalidate cache of CartButton component to update the order's count
-    // revalidateTag("cart-button-cache");
     revalidatePath(`/cart`);
-    revalidatePath(`/products/${productSlug}`);
+    // revalidatePath(`/products/${productSlug}`);
     console.log("added current order to database");
   } catch (e) {
     console.error("Error while fetching data", e);

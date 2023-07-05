@@ -22,7 +22,7 @@ export default function Navbar() {
       <NavbarDropdownMenu>
         {
           // @ts-ignore
-          <CartButton />
+          <CartButton className="flex"/>
         }
         <NavItems className="flex flex-col items-center justify-center gap-y-1" />
       </NavbarDropdownMenu>

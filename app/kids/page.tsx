@@ -1,40 +1,15 @@
 import Link from "next/link"
-// import { db } from "@/db/db";
-// import { carts, NewCart } from "@/db/schema/orders";
-// import { users, NewUser } from "@/db/schema/user";
-import { groqFetch } from "@/sanity/lib/client"
-
+import { fetchAllProductsArray } from "@/lib/fetch-products";
 import ProductCard from "@/components/product-card"
 
 export default async function Page() {
-  const products = await groqFetch(`
-    *[_type == "product" && "kids" in productCategory] {
-        _id,
-        productTitle,
-        productType,
-        productPrice,
-        productCategory,
-        productSizes,
-        "productImages": productImages[].asset->url,
-        productSlug,
-        "productDetails": productInformation.productDetails,
-        "productCare": productInformation.productCare
-}`)
+  const allProducts = await fetchAllProductsArray();
+  const products = allProducts.filter(p => p.productCategory.includes("kids"));
 
-  // const insertedUser = await db.insert(users).values({ id: 1 });
-  //
-  // const insertedCart = await db.insert(carts).values([{ id: 1, userId: 1 }]);
-
-  // const selectedUser = await db.select().from(users);
-  //
-  // const selectedCart = await db.select().from(carts);
-
-  // console.log(selectedCart);
-  // console.log(selectedUser);
   return (
     <div className="flex flex-wrap items-center justify-around gap-y-4">
       {products.map((p: any) => (
-        <Link href={`/products/${p.productSlug.current}`} key={p._id}>
+        <Link href={`/products/${p.productSlug}`} key={p._id}>
           <ProductCard
             productImage={p.productImages[0] ?? ""}
             productTitle={p.productTitle}

@@ -27,15 +27,17 @@ export default function AddtoCart({
   productSlug,
   productSizes,
   productPrice,
+  productId,
   addProductToCartAction,
 }: {
   productSlug: string;
   productSizes: string[];
   productPrice: number;
+  productId: string;
   addProductToCartAction: (
-    productSlug: string,
+    productId: string,
     quantity: number,
-    size?: string
+    size?: string,
   ) => Promise<void>;
 }) {
   const { isSignedIn } = useUser();
@@ -89,7 +91,7 @@ export default function AddtoCart({
             onClick={() => {
               startTransition(async () => {
                 try {
-                  await addProductToCartAction(productSlug, quantity, size);
+                  await addProductToCartAction(productId,  quantity, size);
                 } catch (e) {
                   setFailed(true);
                 }

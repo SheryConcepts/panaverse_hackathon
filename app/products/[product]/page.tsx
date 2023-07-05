@@ -3,25 +3,19 @@ import { groqFetch } from "@/sanity/lib/client";
 import AddtoCart from "@/components/cart/add-to-cart";
 import ProductImages from "@/components/product-images";
 import { addProductToCart } from "@/app/actions";
+import { fetchAllProductsArray } from "@/lib/fetch-products";
+import { Product } from "@/types/products";
 
 export default async function Page({
   params: { product: productSlug },
 }: {
   params: { product: string };
 }) {
-  const product = await groqFetch(`
-    *[_type == "product" && productSlug.current == "${productSlug}"][0] {
-        _id,
-        productTitle,
-        productType,
-        productPrice,
-        productCategory,
-        productSizes,
-        "productImages": productImages[].asset->url,
-        "productSlug": productSlug.current,
-        "productDetails": productInformation.productDetails,
-        "productCare": productInformation.productCare
-}`);
+  
+  // fetching all products from cache
+  const products = await fetchAllProductsArray();
+  // Assuming that product with slug already exists upon error Error() boundary will be rendered
+  const product = products.find(p => p.productSlug === productSlug) as Product;
 
   return (
     <div>
@@ -40,6 +34,7 @@ export default async function Page({
             productSlug={product.productSlug}
             productSizes={product.productSizes}
             productPrice={product.productPrice}
+            productId={product._id}
             addProductToCartAction={addProductToCart}
           />
         </div>
