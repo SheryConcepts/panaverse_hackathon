@@ -11,6 +11,8 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Provider } from "react-redux";
+import { store } from "@/store/store";
 
 export const metadata: Metadata = {
   title: {
@@ -40,29 +42,29 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <head />
         <ClerkProvider>
           <SiteContextProvider>
-            <body
-              className={cn(
-                "min-h-screen bg-background font-sans antialiased",
-                fontSans.className
-              )}
-            >
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="light"
-                enableSystem
+              <body
+                className={cn(
+                  "min-h-screen bg-background font-sans antialiased",
+                  fontSans.className
+                )}
               >
-                <Toaster />
-                <div className="container relative flex min-h-screen flex-col px-10 lg:px-14">
-                  {
-                    // @ts-ignore
-                    <Navbar />
-                  }
-                  <div className="flex-1">{children}</div>
-                  <Footer />
-                </div>
-                <TailwindIndicator />
-              </ThemeProvider>
-            </body>
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="light"
+                  enableSystem
+                >
+                  <Toaster />
+                  <div className="container relative flex min-h-screen flex-col px-10 lg:px-14">
+                    {
+                      // @ts-ignore
+                      <Navbar />
+                    }
+                    <div className="flex-1">{children}</div>
+                    <Footer />
+                  </div>
+                  <TailwindIndicator />
+                </ThemeProvider>
+              </body>
           </SiteContextProvider>
         </ClerkProvider>
       </html>

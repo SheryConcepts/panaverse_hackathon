@@ -16,7 +16,7 @@ export default async function Navbar() {
     orders = await fetchUserOrders(userId);
   }
   return (
-    <div className="flex items-center justify-between py-10 text-sm">
+    <div className="flex items-center justify-between py-10 text-base">
       <Link href="/">
         <Icons.siteLogo className="h-6 " />
       </Link>
