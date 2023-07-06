@@ -3,25 +3,13 @@
 import { useContext, useRef, useState, useTransition } from "react";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
+import { toast } from "react-hot-toast";
 import { v4 as uuidV4 } from "uuid";
 
 import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
+import { toastAddToCart } from "@/lib/toasts";
 import { cn } from "@/lib/utils";
 import { SiteContext } from "@/components/context/context-provider";
-
-function useQuantity(initialValue: number) {
-  const quantityRef = useRef(initialValue);
-  const [number, setNumber] = useState(quantityRef.current);
-
-  function setPreservedNumber(newValue: number) {
-    setNumber((v) => {
-      quantityRef.current = newValue;
-      return newValue;
-    });
-  }
-
-  return { quantity: quantityRef.current, setQuantity: setPreservedNumber };
-}
 
 export default function AddtoCart({
   productSlug,
@@ -37,7 +25,7 @@ export default function AddtoCart({
   addProductToCartAction: (
     productId: string,
     quantity: number,
-    size?: string,
+    size?: string
   ) => Promise<void>;
 }) {
   const { isSignedIn } = useUser();
@@ -87,14 +75,12 @@ export default function AddtoCart({
       {isSignedIn ? (
         <div className="flex w-full flex-row items-center justify-start gap-x-4">
           <button
-            className="flex-1 border bg-gray-700 px-8 py-4 font-bold text-gray-50 ring-1 ring-slate-500 transition duration-100 ease-in hover:bg-gray-600 active:bg-gray-700"
+            className="flex-1 flex-1 border bg-gray-700 px-8 py-4 font-bold text-gray-50 ring-1 ring-slate-500 transition duration-100 ease-in hover:bg-gray-600 active:bg-gray-700"
             onClick={() => {
               startTransition(async () => {
-                try {
-                  await addProductToCartAction(productId,  quantity, size);
-                } catch (e) {
-                  setFailed(true);
-                }
+                toastAddToCart(
+                  addProductToCartAction(productId, quantity, size)
+                );
               });
             }}
           >

@@ -13,8 +13,8 @@ export default async function Navbar() {
   const { userId } = auth();
   let orders = 0;
   if (userId) {
-      orders = await fetchUserOrders(userId);
-    }
+    orders = await fetchUserOrders(userId);
+  }
   return (
     <div className="flex items-center justify-between py-10 text-sm">
       <Link href="/">

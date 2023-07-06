@@ -3,6 +3,7 @@
 import { useEffect, useState, useTransition } from "react";
 
 import ShoppingCartCard from "@/components/cart-page/shopping-cart-card";
+import { toastDeleteFromCart } from "@/lib/toasts";
 
 // function removeOrderAction(orderId: number): Promise<void> {
 //   "use server";
@@ -47,12 +48,7 @@ export default function Orders({
     setRemovedOrder(orders.filter((o) => o.id === id)[0]);
     setOrders(orders.filter((o) => o.id !== id));
     startTransition(async () => {
-      try {
-        await action(id);
-      } catch (e) {
-        setFailed(true);
-        console.warn(e);
-      }
+      toastDeleteFromCart(action(id))
     });
   }
 
