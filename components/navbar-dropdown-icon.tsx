@@ -27,7 +27,7 @@ export default async function CartButton({
       )}
     >
       <Icons.cross className="w-6" />
-      <CartButtonCount placedOrders={ordersAddedToCart!} />
+      <CartButtonCount orders={ordersAddedToCart!} />
     </Link>
   );
 }

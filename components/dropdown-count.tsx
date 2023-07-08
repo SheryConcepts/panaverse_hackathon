@@ -27,7 +27,7 @@ export default function DropCount({
     >
     
       <Icons.dropdownIcon className="w-6" />
-      <CartButtonCount placedOrders={orders} />
+      <CartButtonCount orders={orders} />
     </div>
   );
 }

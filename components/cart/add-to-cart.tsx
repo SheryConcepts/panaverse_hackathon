@@ -1,18 +1,15 @@
 "use client";
 
-import { useContext, useRef, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import Link from "next/link";
+import { addProductToCart} from "@/store/cartSlice";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import { v4 as uuidV4 } from "uuid";
-
-import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
-import { toastAddToCart } from "@/lib/toasts";
 import { cn } from "@/lib/utils";
-import { SiteContext } from "@/components/context/context-provider";
 
 export default function AddtoCart({
-  productSlug,
   productSizes,
   productPrice,
   productId,
@@ -30,8 +27,9 @@ export default function AddtoCart({
 }) {
   const { isSignedIn } = useUser();
   const [size, setSize] = useState<string>("");
-  const [quantity, setQuantity] = useLocalStorage(productSlug, 0);
-  const { setFailed, startTransition } = useContext(SiteContext);
+  const [quantity, setQuantity] = useState(0);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="space-y-10">
@@ -75,21 +73,27 @@ export default function AddtoCart({
       {isSignedIn ? (
         <div className="flex w-full flex-row items-center justify-start gap-x-4">
           <button
-            className="flex-1 flex-1 border bg-gray-700 px-8 py-4 font-bold text-gray-50 ring-1 ring-slate-500 transition duration-100 ease-in hover:bg-gray-600 active:bg-gray-700"
-            onClick={() => {
-              startTransition(async () => {
-                toastAddToCart(
-                  addProductToCartAction(productId, quantity, size)
-                );
-              });
+            className="flex-1 border bg-gray-700 px-8 py-4 font-bold text-gray-50 ring-1 ring-slate-500 transition duration-100 ease-in hover:bg-gray-600 active:bg-gray-700"
+            onClick={async () => {
+              let toastId: string;
+              try {
+                toastId = toast.loading("Adding Product to Cart");
+                await addProductToCartAction(productId, quantity, size);
+                dispatch(addProductToCart());
+                toast.dismiss(toastId);
+                toast.success("Added Product to Cart");
+              } catch (e) {
+                toast.dismiss(toastId!);
+                toast.error(`Failed while adding product to cart: ${e}`,);
+                console.log(e);
+              }
             }}
           >
             ADD TO CART
           </button>
           <h3 className="text-h3">{productPrice} $</h3>
         </div>
-      ) : (
-        <Link href="/sign-in">
+      ) : ( <Link href="/sign-in">
           <p>Sign in</p>
         </Link>
       )}

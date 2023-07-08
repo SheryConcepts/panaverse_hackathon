@@ -2,17 +2,14 @@ import "@/styles/globals.css";
 import { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast";
-
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import { SiteContextProvider } from "@/components/context/context-provider";
+import Provider from "@/components/context/redux-provider";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Provider } from "react-redux";
-import { store } from "@/store/store";
 
 export const metadata: Metadata = {
   title: {
@@ -41,7 +38,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <html lang="en" suppressHydrationWarning>
         <head />
         <ClerkProvider>
-          <SiteContextProvider>
+            <Provider>
               <body
                 className={cn(
                   "min-h-screen bg-background font-sans antialiased",
@@ -65,7 +62,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                   <TailwindIndicator />
                 </ThemeProvider>
               </body>
-          </SiteContextProvider>
+            </Provider>
         </ClerkProvider>
       </html>
     </>

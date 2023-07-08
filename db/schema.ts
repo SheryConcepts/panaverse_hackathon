@@ -1,5 +1,5 @@
 import { InferModel, relations } from "drizzle-orm"
-import { index, integer, pgTable, serial, varchar } from "drizzle-orm/pg-core"
+import { index, integer, pgTable, serial, varchar, timestamp } from "drizzle-orm/pg-core"
 
 export const orders = pgTable(
   "orders",
@@ -11,6 +11,8 @@ export const orders = pgTable(
     userId: varchar("userId")
       .references(() => users.id)
       .notNull(),
+    createdAt: timestamp("createdAt").defaultNow(),
+    modifiedAt: timestamp("modifiedAt").defaultNow()
   },
   (t) => ({
     productIdIdx: index("productIdIdx").on(t.productId),

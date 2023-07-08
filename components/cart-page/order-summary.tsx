@@ -16,7 +16,7 @@ export default function OrderSummary({
         <p>Subtotal</p>
         <p>${subtotal}</p>
       </div>
-      <button className="w-full max-w-xs self-center bg-gray-800  px-2 py-2 font-bold text-gray-50 ring-2 ring-gray-400  hover:bg-gray-700 active:bg-gray-800">
+      <button className="w-full max-w-xs self-center bg-gray-800  p-2 font-bold text-gray-50 ring-2 ring-gray-400  hover:bg-gray-700 active:bg-gray-800">
         Process to checkout
       </button>
     </div>

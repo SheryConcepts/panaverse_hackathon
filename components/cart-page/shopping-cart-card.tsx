@@ -1,7 +1,9 @@
 import Image from "next/image";
-import { Trash2 as Delete, MinusIcon, PlusIcon } from "lucide-react";
+import { Trash2 as DeleteIcon, MinusIcon, PlusIcon } from "lucide-react";
 
 import { deleteAction } from "@/app/actions";
+
+import Quantity from "./quantity";
 
 export default function ShoppingCartCardClient({
   quantity,
@@ -34,7 +36,7 @@ export default function ShoppingCartCardClient({
         <div className="flex justify-between ">
           <h1 className="text-h4 font-light ">{productTitle}</h1>
           <button onClick={() => deleteOrder(id, deleteAction)}>
-            <Delete />
+            <DeleteIcon />
           </button>
         </div>
         <div className="space-y-1">
@@ -49,15 +51,7 @@ export default function ShoppingCartCardClient({
           </div>
           <div className="flex flex-row justify-between">
             <p className="text-lg font-bold">${productPrice}</p>
-            <div className="flex flex-row items-center gap-x-2">
-              <p className="w-10 scale-75 rounded-full  bg-slate-200 p-2 font-bold text-gray-600  ring-1 ring-slate-500 transition duration-100 ease-in hover:scale-[0.8] hover:bg-slate-100 active:scale-75 active:bg-slate-300">
-                <MinusIcon />
-              </p>
-              <p className="">{quantity}</p>
-              <p className="w-10 scale-75 rounded-full  bg-slate-200 p-2 font-bold text-gray-600  ring-1 ring-slate-500 transition duration-100 ease-in hover:scale-[0.8] hover:bg-slate-100 active:scale-75 active:bg-slate-300">
-                <PlusIcon />
-              </p>
-            </div>
+            <Quantity quantity={quantity} />
           </div>
         </div>
       </div>

@@ -1,21 +1,20 @@
-import { groqFetch } from "@/sanity/lib/client";
-
+import { Product } from "@/types/products";
+import { fetchAllProductsArray } from "@/lib/fetch-products";
 import AddtoCart from "@/components/cart/add-to-cart";
 import ProductImages from "@/components/product-images";
 import { addProductToCart } from "@/app/actions";
-import { fetchAllProductsArray } from "@/lib/fetch-products";
-import { Product } from "@/types/products";
 
 export default async function Page({
   params: { product: productSlug },
 }: {
   params: { product: string };
 }) {
-  
   // fetching all products from cache
   const products = await fetchAllProductsArray();
   // Assuming that product with slug already exists upon error Error() boundary will be rendered
-  const product = products.find(p => p.productSlug === productSlug) as Product;
+  const product = products.find(
+    (p) => p.productSlug === productSlug
+  ) as Product;
 
   return (
     <div>
