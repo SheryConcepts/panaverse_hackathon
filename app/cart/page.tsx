@@ -24,7 +24,7 @@ export default async function Page() {
         {orders.length !== 0 ? (
           <div className="flex flex-col items-start justify-start  gap-x-8 gap-y-12 lg:flex-row lg:items-start lg:justify-between">
             <Orders orders={orders} />
-            <OrderSummary totalQuantity={totalQunatity} subtotal={subtotal} />
+            <OrderSummary orders={orders} totalQuantity={totalQunatity} subtotal={subtotal} />
           </div>
         ) : (
           <p>No orders in Cart</p>

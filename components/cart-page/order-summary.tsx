@@ -1,9 +1,12 @@
+import { Order } from "@/types/products";
+
 export default function OrderSummary({
   totalQuantity,
   subtotal,
 }: {
   totalQuantity: number;
   subtotal: number;
+  orders: Order[]
 }) {
   return (
     <div className="flex w-full flex-col gap-y-6 bg-gray-50 p-8 lg:w-2/5">

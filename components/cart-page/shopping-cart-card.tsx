@@ -51,7 +51,8 @@ export default function ShoppingCartCardClient({
           </div>
           <div className="flex flex-row justify-between">
             <p className="text-lg font-bold">${productPrice}</p>
-            <Quantity quantity={quantity} />
+            <Quantity orderId={id} quantity={quantity} />
+            
           </div>
         </div>
       </div>
