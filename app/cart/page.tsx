@@ -1,6 +1,5 @@
-import { db } from "@/db/db";
 import { auth } from "@clerk/nextjs";
-import { fetchAllProductsRecord as fetchAllProducts } from "@/lib/fetch-products";
+
 import OrderSummary from "@/components/cart-page/order-summary";
 import Orders from "@/components/cart-page/orders";
 import { fetchPlacedOrders } from "@/lib/fetch-products";
@@ -14,7 +13,7 @@ export default async function Page() {
       return prev + curr.quantity;
     }, 0);
 
-    const subtotal = orders.reduce((prev, curr, i, arr) => {
+    const subtotal = orders.reduce((prev, curr) => {
       return prev + curr.productPrice * curr.quantity;
     }, 0);
 

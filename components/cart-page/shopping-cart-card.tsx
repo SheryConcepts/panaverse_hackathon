@@ -52,7 +52,6 @@ export default function ShoppingCartCardClient({
           <div className="flex flex-row justify-between">
             <p className="text-lg font-bold">${productPrice}</p>
             <Quantity orderId={id} quantity={quantity} />
-            
           </div>
         </div>
       </div>

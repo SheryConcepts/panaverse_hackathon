@@ -38,7 +38,7 @@ export default function Quantity({
   return (
     <div className="flex flex-row items-center gap-x-2">
       <button
-        disabled={quantity === 0}
+        disabled={quantity === 1}
         onClick={() => {
           setQuantity(quantity === 0 ? 0 : quantity - 1);
           startTransition(async () => {
