@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import Stripe from "stripe";
 
-const WEBHOOK_ENDPOINT_SK =
-  "whsec_YP01QiOHyhRWuwxMP4AGyyRfSSgo1Gqh";
+const WEBHOOK_ENDPOINT_SK = process.env.STRIPE_WEBHOOK_SECRET;
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2022-11-15",
@@ -26,7 +25,7 @@ export async function POST(req: NextRequest) {
     const event = stripe.webhooks.constructEvent(
       payload,
       sig!,
-      WEBHOOK_ENDPOINT_SK
+      WEBHOOK_ENDPOINT_SK!
     );
     if (event.type === "checkout.session.completed") {
       const session = await stripe.checkout.sessions.retrieve(
