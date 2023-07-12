@@ -11,8 +11,7 @@ export default function OrderSummary({
   subtotal: number;
   orders: Order[];
 }) {
-  
-  // stripe line items with price_data 
+  // stripe line items with price_data
   const lineItems = orders.map((o) => {
     return {
       price_data: {
@@ -26,12 +25,14 @@ export default function OrderSummary({
       quantity: o.quantity,
       adjustable_quantity: {
         enabled: true,
-      }
-    }; 
-  })
-  
-  
-  
+      },
+    };
+  });
+
+  const orderIds = orders.map((o) => {
+    return o.id;
+  });
+
   return (
     <div className="flex w-full flex-col gap-y-6 bg-gray-50 p-8 lg:w-2/5">
       <h1 className="text-h4">Order Summary</h1>
@@ -43,7 +44,7 @@ export default function OrderSummary({
         <p>Subtotal</p>
         <p>${subtotal}</p>
       </div>
-      <ProcessCheckout lineItems={lineItems} />
+      <ProcessCheckout orderIds={orderIds} lineItems={lineItems} />
     </div>
   );
 }

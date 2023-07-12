@@ -12,11 +12,17 @@ export async function POST(req: NextRequest) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
-      success_url: "http://localhost:3000/cart/success",
-      cancel_url: "http://localhost:3000/cart/cancel",
+      success_url:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000/cart/sucess"
+          : `${process.env.HOST}/cart/success`,
+      cancel_url:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000/cart/cancel"
+          : `${process.env.HOST}/cart/cancel`,
       currency: "usd",
     });
-    return NextResponse.json(session.url!, {status: 200, statusText: "OK"});
+    return NextResponse.json(session.url!, { status: 200, statusText: "OK" });
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }

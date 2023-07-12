@@ -9,7 +9,8 @@ export default authMiddleware({
     "/kids",
     "/products/:id",
     "/cart",
-    "/api/checkout"
+    "/api/checkout",
+    "/api/webhook"
   ],
 })
 

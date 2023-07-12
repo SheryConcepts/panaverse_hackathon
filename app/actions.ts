@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/db/db";
 import { orders } from "@/db/schema";
 import { auth } from "@clerk/nextjs";
-import { eq } from "drizzle-orm";
+import { eq, inArray } from "drizzle-orm";
 
 export async function addProductToCart(
   productId: string,
@@ -70,4 +70,8 @@ export async function changeQuantity(
     console.log("Error While Changing Order In Database", e);
     throw new Error("There was an error")
   }
+}
+
+export async function deleteOrders(orderIds: number[]){
+    await db.delete(orders).where(inArray(orders.id, orderIds));
 }
