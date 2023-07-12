@@ -1,5 +1,3 @@
-import { db } from "@/db/db"
-import { orders, users } from "@/db/schema"
 import { config } from "dotenv"
 
 config()

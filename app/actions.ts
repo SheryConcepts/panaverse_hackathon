@@ -32,6 +32,9 @@ export async function addProductToCart(
 }
 
 export async function deleteAction(id: number) {
+  const { userId } = auth();
+  if (!userId) throw new Error("You must be logged in");
+  
   try {
     console.log(`deleting order with ID=${id}`);
     await db.delete(orders).where(eq(orders.id, id));
@@ -47,10 +50,10 @@ export async function changeQuantity(
   mode: "increment" | "decrement",
   currValue: number
 ) {
-  console.log('running action')
-  const {userId} = auth();
-  if (!userId) throw new Error("You are not Authorized")
-  
+  console.log("running action");
+  const { userId } = auth();
+  if (!userId) throw new Error("You are not Authorized");
+
   try {
     if (mode === "increment") {
       await db
@@ -68,10 +71,12 @@ export async function changeQuantity(
     revalidatePath("/cart");
   } catch (e) {
     console.log("Error While Changing Order In Database", e);
-    throw new Error("There was an error")
+    throw new Error("There was an error");
   }
 }
 
-export async function deleteOrders(orderIds: number[]){
-    await db.delete(orders).where(inArray(orders.id, orderIds));
+export async function deleteOrders(orderIds: number[]) {
+  const { userId } = auth();
+  if (!userId) throw new Error("You must be logged in");
+  await db.delete(orders).where(inArray(orders.id, orderIds));
 }

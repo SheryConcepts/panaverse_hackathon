@@ -15,16 +15,18 @@ export default async function CartButton({
   const ordersPlaced = (userId && (await fetchUserOrders(userId))) || 0;
 
   return (
-    <Link
-      href="/cart"
-      prefetch={false}
-      className={cn(
-        "relative hidden items-center justify-center rounded-full bg-slate-200 p-2 lg:flex",
-        className
-      )}
-    >
-      <Icons.cart className="w-6" />
-      <CartButtonCount orders={ordersPlaced} />
-    </Link>
+    <div className="flex">
+      <Link
+        href="/cart"
+        prefetch={false}
+        className={cn(
+          "relative hidden items-center justify-center rounded-full bg-slate-200 p-2 lg:flex",
+          className
+        )}
+      >
+        <Icons.cart className="w-6" />
+        <CartButtonCount orders={ordersPlaced} />
+      </Link>
+    </div>
   );
 }

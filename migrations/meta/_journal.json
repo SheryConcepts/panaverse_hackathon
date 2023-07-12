@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1686062779123,
-      "tag": "0000_groovy_red_wolf",
-      "breakpoints": false
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1688790560306,
-      "tag": "0001_ambiguous_mariko_yashida",
-      "breakpoints": false
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1688791717279,
-      "tag": "0002_curly_avengers",
+      "when": 1689162891409,
+      "tag": "0000_graceful_fantastic_four",
       "breakpoints": false
     }
   ]

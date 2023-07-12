@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { auth } from "@clerk/nextjs";
 
-import { cn, fetchUserOrders } from "@/lib/utils";
+import { cn} from "@/lib/utils";
 import CartButtonCount from "@/components/cart/cart-button-count";
+import { fetchUserOrders } from "@/lib/fetch-products";
 import { Icons } from "@/components/icons";
 
 

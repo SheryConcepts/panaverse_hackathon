@@ -2,15 +2,16 @@ import "server-only";
 import { cache } from "react";
 import { groqFetch } from "@/sanity/lib/client";
 import { db } from "db/db";
-
+import { eq } from "drizzle-orm";
 import { Product, ProductsRecord } from "@/types/products";
+import {  orders } from "@/db/schema";
 
 export async function fetchUserOrders(userId: string) {
-  const orders = await db.query.orders.findMany({
-    where: (order, { eq }) => eq(order.userId, userId),
+  const returnOrders = await db.query.orders.findMany({
+    where: eq(orders.userId, userId)
   });
 
-  return orders.length ?? 0;
+  return returnOrders.length ?? 0;
 }
 
 export const fetchAllProductsArray = cache(async (): Promise<Product[]> => {
@@ -49,15 +50,10 @@ export function preload() {
 
 export async function fetchPlacedOrders(userId: string) {
   const placedOrderProductIds = (
-    await db.query.users.findFirst({
-      with: {
-        orders: {
-            orderBy: (order, {desc}) => [desc(order.modifiedAt)]
-          }
-      },
-      where: (users, { eq }) => eq(users.id, userId),
+    await db.query.orders.findMany({
+      where: (users, { eq }) => eq(orders.userId, userId),
     })
-  )?.orders;
+  );
 
   const allProductsSanity = await fetchAllProducts();
 

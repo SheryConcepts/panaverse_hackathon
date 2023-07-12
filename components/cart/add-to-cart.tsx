@@ -27,7 +27,7 @@ export default function AddtoCart({
 }) {
   const { isSignedIn } = useUser();
   const [size, setSize] = useState<string>("");
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
 
@@ -56,7 +56,8 @@ export default function AddtoCart({
           <div className="flex items-center gap-x-1">
             <button
               className="w-10 scale-75 rounded-full  bg-slate-200 p-2 font-bold text-gray-600  ring-1 ring-slate-500 transition duration-100 ease-in hover:scale-[0.8] hover:bg-slate-100 active:scale-75 active:bg-slate-300"
-              onClick={() => setQuantity(quantity - 1 < 0 ? 0 : quantity - 1)}
+              disabled={quantity === 1}
+              onClick={() => setQuantity(quantity - 1)}
             >
               -
             </button>

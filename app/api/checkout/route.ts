@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
       line_items,
       success_url:
         process.env.NODE_ENV === "development"
-          ? "http://localhost:3000/cart/sucess"
+          ? "http://localhost:3000/cart/success"
           : `${process.env.HOST}/cart/success`,
       cancel_url:
         process.env.NODE_ENV === "development"

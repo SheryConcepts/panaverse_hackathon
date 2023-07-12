@@ -1,3 +1,4 @@
+
 import Link from "next/link"
 import { fetchAllProductsArray } from "@/lib/fetch-products";
 import ProductCard from "@/components/product-card"

@@ -6,14 +6,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import { relative } from "path";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function Slider({
     products,
 }: {
-    products: { productImage: string; productSlug: string; productPrice: number; productTitle: string }[];
+    products: {
+        productImage: string;
+        productSlug: string;
+        productPrice: number;
+        productTitle: string;
+    }[];
 }) {
     return (
         <Swiper
@@ -65,7 +69,6 @@ function Product({
     price: number;
     slug: string;
 }) {
-    console.log(image)
     return (
         <motion.div
             whileHover={{

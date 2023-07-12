@@ -18,9 +18,6 @@ export default function CartButton({ orders }: { orders: number }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orders]);
 
-  console.log("orders: ", orders);
-  console.log("ordersPlaced: ", ordersPlaced);
-
   return (
     <span
       className={cn(

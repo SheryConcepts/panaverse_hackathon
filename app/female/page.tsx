@@ -1,3 +1,4 @@
+
 import Link from "next/link"
 import { groqFetch } from "@/sanity/lib/client"
 
@@ -7,7 +8,6 @@ import { fetchAllProductsArray } from "@/lib/fetch-products"
 export default async function Page() {
   const allProducts = await fetchAllProductsArray();
   const products = allProducts.filter(p => p.productCategory.includes("female"));
-  console.log(products)
   return (
     <div className="flex flex-wrap items-center justify-around gap-y-4">
       {products.map((p: any) => (

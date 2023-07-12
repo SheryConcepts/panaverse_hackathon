@@ -29,7 +29,7 @@ export default function Quantity({
   quantity: number;
   orderId: number;
 }) {
-  const [quantity, setQuantity] = useState(serverQuantity);
+  const [quantity, setQuantity] = useState(serverQuantity <= 0 ? 1 : serverQuantity);
   const [, startTransition] = useTransition();
 
   // eslint-disable-next-line
@@ -40,7 +40,7 @@ export default function Quantity({
       <button
         disabled={quantity === 1}
         onClick={() => {
-          setQuantity(quantity === 0 ? 0 : quantity - 1);
+          setQuantity(quantity - 1);
           startTransition(async () => {
             try {
               await changeQuantity(orderId, "decrement", quantity);

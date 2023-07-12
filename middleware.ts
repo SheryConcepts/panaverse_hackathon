@@ -1,6 +1,13 @@
 import { authMiddleware } from "@clerk/nextjs"
+import { redirectToSignUp } from "@clerk/nextjs"
 
 export default authMiddleware({
+  afterAuth: (auth, req, evt) => {
+    if (!auth.userId && !auth.isPublicRoute) {
+      return redirectToSignUp({returnBackUrl: req.url}) 
+    } 
+    
+  },
   publicRoutes: [
     "/",
     "/products",

@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs";
-
+import Link from "next/link";
 import OrderSummary from "@/components/cart-page/order-summary";
 import Orders from "@/components/cart-page/orders";
 import { fetchPlacedOrders } from "@/lib/fetch-products";
@@ -36,7 +36,7 @@ export default async function Page() {
     return (
       <div className="mx-auto  max-w-screen-lg px-8">
         <h1 className="mb-8 text-3xl font-bold">Shopping Cart</h1>
-        <p>Please Sign in to Continue</p>
+        <p>Please <Link href="/sign-in">Sign</Link> in to Continue</p>
       </div>
     );
   }

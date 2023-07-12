@@ -69,3 +69,11 @@ export default async function Page({
     </div>
   );
 }
+
+// Was not able to do it because of headers
+// export async function generateStaticParams() {
+//   const products = await fetchAllProductsArray();
+//   return products.map((product) => ({
+//     slug: product.productSlug,
+//   }));
+// }
