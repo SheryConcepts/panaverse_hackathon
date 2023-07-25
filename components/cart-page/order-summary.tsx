@@ -44,7 +44,7 @@ export default function OrderSummary({
         <p>Subtotal</p>
         <p>${subtotal}</p>
       </div>
-      <ProcessCheckout orderIds={orderIds} lineItems={lineItems} />
+      <ProcessCheckout  lineItems={lineItems} />
     </div>
   );
 }

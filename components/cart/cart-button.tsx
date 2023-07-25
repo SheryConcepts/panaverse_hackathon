@@ -18,7 +18,6 @@ export default async function CartButton({
     <div className="flex">
       <Link
         href="/cart"
-        prefetch={false}
         className={cn(
           "relative hidden items-center justify-center rounded-full bg-slate-200 p-2 lg:flex",
           className

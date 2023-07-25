@@ -2,11 +2,12 @@
 
 import { useState, useTransition } from "react";
 import Link from "next/link";
-import { addProductToCart} from "@/store/cartSlice";
+import { addProductToCart } from "@/store/cartSlice";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { v4 as uuidV4 } from "uuid";
+
 import { cn } from "@/lib/utils";
 
 export default function AddtoCart({
@@ -80,12 +81,28 @@ export default function AddtoCart({
               try {
                 toastId = toast.loading("Adding Product to Cart");
                 await addProductToCartAction(productId, quantity, size);
+                // const res = await fetch(`/api/addProduct`, {
+                //   method: "POST",
+                //   headers: {
+                //     "Content-Type": "application/json",
+                //   },
+                //   body: JSON.stringify({
+                //     productId,
+                //     quantity,
+                //     size,
+                //   }),
+                // });
+                // if (res.status === 500 || res.status === 400) {
+                //   toast.dismiss(toastId!);
+                //   toast.error("Failed while adding product to cart");
+                //   return;
+                // }
                 dispatch(addProductToCart());
                 toast.dismiss(toastId);
                 toast.success("Added Product to Cart");
               } catch (e) {
                 toast.dismiss(toastId!);
-                toast.error(`Failed while adding product to cart: ${e}`,);
+                toast.error(`Failed while adding product to cart: ${e}`);
                 console.log(e);
               }
             }}
@@ -94,7 +111,8 @@ export default function AddtoCart({
           </button>
           <h3 className="text-h3">{productPrice} $</h3>
         </div>
-      ) : ( <Link href="/sign-in">
+      ) : (
+        <Link href="/sign-in">
           <p>Sign in</p>
         </Link>
       )}

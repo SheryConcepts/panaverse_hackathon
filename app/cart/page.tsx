@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"
+
 import { auth } from "@clerk/nextjs";
 import Link from "next/link";
 import OrderSummary from "@/components/cart-page/order-summary";
@@ -8,6 +10,7 @@ export default async function Page() {
   const { userId } = auth();
   if (userId) {
     const orders = await fetchPlacedOrders(userId);
+    console.log(orders)
 
     const totalQunatity = orders.reduce((prev, curr) => {
       return prev + curr.quantity;

@@ -31,7 +31,6 @@ export default async function Navbar() {
           // @ts-ignore
           <CartButton className="flex" />
         }
-        <NavItems className="flex flex-col items-center justify-center gap-y-1" />
       </NavbarDropdownMenu>
     </div>
   );

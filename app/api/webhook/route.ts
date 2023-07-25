@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { db } from "@/db/db";
+import { orders } from "@/db/schema";
 import { Resend } from "resend";
 import Stripe from "stripe";
 
@@ -28,8 +30,9 @@ export async function POST(req: NextRequest) {
       WEBHOOK_ENDPOINT_SK!
     );
     if (event.type === "checkout.session.completed") {
+      await db.delete(orders);
       const session = await stripe.checkout.sessions.retrieve(
-      // @ts-ignore
+        // @ts-ignore
         event.data.object.id
       );
       await fullFillOrder(session.customer_details?.email!);

@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Header() {
   return (
-    <header className="flex flex-row justify-between gap-y-4">
+    <header className="flex flex-row justify-between gap-y-4 overflow-clip">
       <div className="flex w-1/2 flex-1 flex-col items-start justify-start gap-y-8 py-8 lg:flex-none ">
         <div className="text-p text-md rounded-md bg-blue-100 px-4  py-2 font-semibold text-blue-600">
           Sale 70%
@@ -36,7 +36,7 @@ export default function Header() {
             <p className="font-bold text-slate-100">Start Shopping</p>
           </Link>
         </Button>
-        <div className="flex flex-row items-center justify-evenly gap-x-8">
+        <div className="flex flex-row flex-wrap items-center justify-evenly gap-x-8 gap-y-8">
           <Image src={bazar} alt="bazar" width={100} height={100} />
           <Image src={bustle} alt="bazar" width={100} height={100} />
           <Image src={versace} alt="bazar" width={100} height={100} />

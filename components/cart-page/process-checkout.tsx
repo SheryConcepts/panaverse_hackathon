@@ -10,10 +10,8 @@ import { deleteOrders } from "@/app/actions";
 
 export default function ProcessCheckout({
   lineItems,
-  orderIds
 }: {
   lineItems: LineItem[];
-  orderIds: number[];
 }) {
   const router = useRouter();
 
@@ -26,7 +24,6 @@ export default function ProcessCheckout({
         body: JSON.stringify({ line_items: lineItems }),
       });
       const url: string = await res.json();
-      await deleteOrders(orderIds);
       toast.dismiss(toastId);
       router.push(url);
     } catch(e) {

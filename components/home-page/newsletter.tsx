@@ -35,7 +35,7 @@ export default function Newsletter() {
 
 function Background() {
   return (
-    <div className="absolute z-[-3] text-9xl font-bold text-gray-100">
+    <div className="max-w-screen absolute z-[-3]   font-bold text-gray-100 sm:text-7xl md:text-9xl">
       Newsletter
     </div>
   );
